@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="networkApp">
+<head>
+	<title>Network App</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+</head>
+<body ng-controller="PersonController as person">
+
+	<div class="container">
+		<h1>Creepy.IO</h1>
+		<nav class="navbar navbar-default col-md-4 col-md-offset-4">
+			<form class="navbar-form navbar-left" role="search">
+				<div class="form-group">
+					<input type="email" class="text" placeholder="Search" ng-model="person.email">
+				</div>
+				<button ng-click="person.emailSearch()"  type="submit" class="btn btn-default">Submit</button>
+			</form>
+		</nav>	
+	</div>
+
+
+
+	<img ng-src="{{person.imageUrl}}" >
+
+	<h3>Name: {{person.name}}</h3>
+	<h3>Social Profiles: </h3> 
+	<a ng-repeat="socialType in person.social" href="{{socialType.url}}"><p>{{socialType.type}}</p></a> 
+
+<script src="networkapp.js"></script>
+<script src="personcontroller-networkapp.js"></script>
+<script src="personfactory-networkapp.js"></script>
+
+</body>
+</html>
