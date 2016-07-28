@@ -1,0 +1,41 @@
+<!Doctype html>
+<html ng-app="thingsToDo">
+<head>
+ <title>page1</title>
+ <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.min.js"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+ <script src="app.controller.js"></script>
+ <script src="factory.app.js"></script>
+</head>	
+<body ng-controller="safeControl as fun">
+<!-- <form>
+<input type="submit" value="" name="city" ng-model="sCtrl.city"></input>
+</form> -->
+<nav class="navbar navbar-default col-md-4 col-md-offset-4">
+			<form class="navbar-form navbar-left" role="search">
+				<div class="form-group">
+					<input type="text" class="text" placeholder="Search" ng-model="fun.city">
+				</div>
+				<button ng-click="fun.funStuff()"  type="submit" class="btn btn-default">Submit</button>
+			</form>
+		</nav>
+
+ <div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1 class="text-center">The list of things you can do</h1>
+		</div>	
+	</div>
+	<div class="row">
+		<div class="col-xs-4" ng-repeat="item in fun.coolData | limitTo : 12">
+			<h3>{{item.title}}</h3>
+			<h5>{{item.supplierName}}</h5>
+			<img src="http:{{item.imageUrl}}">
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

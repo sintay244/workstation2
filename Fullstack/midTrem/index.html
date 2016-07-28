@@ -1,32 +1,46 @@
 <!Doctype html>
-<html ng-app="safeApp">
-<head>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></style>
-<script src="main.js"></script>
-<script src="app.js"></script>
-<script src="app.controller.js"></script>
-<script src="factory.app.js"></script>
-<script src="main.js"></script>
-<link rel="stylesheet" href="style.css"></style>
-</head>
-<body ng-controller="safeControl">
-<h3>My Google Maps Demo</h3>
-    <div id="map"></div>
+<html>
+  <head>
+    <style>
+      html, body, #map { margin: 0; padding: 0; height: 100%; }
+    </style>
     <script>
-      function initMap() {
-        var mapDiv = document.getElementById('map');
-        var map = new google.maps.Map(mapDiv, {
-            center: {lat: 44.540, lng: -78.546},
-            zoom: 8
+      var map;
+
+      function initialize() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 2,
+          center: new google.maps.LatLng(2.8,-187.3),
+          mapTypeId: google.maps.MapTypeId.TERRAIN
         });
+
+        // Create a <script> tag and set the USGS URL as the source.
+        var script = document.createElement('script');
+        // (In this example we use a locally stored copy instead.)
+        // script.src = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp';
+        script.src = '/maps/documentation/javascript/tutorials/js/earthquake_GeoJSONP.js';
+
+        document.getElementsByTagName('head')[0].appendChild(script);
+      }
+
+      // Loop through the results array and place a marker for each
+      // set of coordinates.
+      window.description_callback = function(results) {
+        for (var i = 0; i < results.features.length; i++) {
+          var coords = results.features[i].geometry.coordinates;
+          var latLng = new google.maps.LatLng(coords[1],coords[0]);
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: map
+          });
+        }
       }
     </script>
-   <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkZwffm7hFPy7pJmq2NbplKAWz_5cpDuk&callback=initMap">
-   </script>
-
-</body>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=<var class="apiparam replaceable-credential"> AIzaSyBJdqLJx66GOywaSkBHNTXElvN7kpMr5SM</var>&libraries=visualization&callback=initialize">
+    </script>
+  </body>
 </html>
