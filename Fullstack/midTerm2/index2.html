@@ -15,6 +15,9 @@ background-image:url("hong-kong1.jpg");
 background-repeat:no-repeat;
 background-size: cover
 }
+#custom-search-input {
+  width:50%;
+}
 </style>
 
 </head>	
@@ -65,11 +68,23 @@ background-size: cover
   <!-- <nav class="navbar navbar-default col-md-4 col-md-offset-4"> -->
       <!-- <form class="navbar-form navbar-left" role="search"> -->
         <!-- <div class="form-group"> -->               
-        <input type="text" class="text" placeholder="Current city" ng-model="fun.city">
-        <button ng-click="fun.funStuff()"  type="submit" class="btn btn-info">Go</button>        
-      <!-- </div> -->
+        <!-- <input type="text" class="text" placeholder="Current city" ng-model="fun.city">
+        <button ng-click="fun.funStuff()"  type="submit" class="btn btn-info">Go</button> -->        
+      </div>  
+ <div id="custom-search-input">
+               <div class="input-group col-md-12">
+                   <input ng-model="fun.city" type="text" class="form-control" placeholder="Current City" />
+                   <span class="input-group-btn">
+                       <button ng-click="fun.funStuff()"
+                                                class="btn btn-info" type="button">
+                           <i class="glyphicon glyphicon-search"></i>
+                       </button>
+                   </span>
+               </div>
+
+           </div>
       
-      <!-- </form> -->
+      <!-- </form>
     <!-- </nav> -->
 </div>
 </div>
