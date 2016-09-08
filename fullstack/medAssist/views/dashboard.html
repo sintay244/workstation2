@@ -184,14 +184,14 @@ Will seize the Doctor too</h3>
   </div>
    <div>   
             <select ng-model="dCtrl.KidList.id" ng-options="item.id as item.name for item in dCtrl.kidList"></select> 
-            <button class="btn btn-danger" ng-click="remov(dCtrl.kidList.id)">Remove</button>
+            <button class="btn btn-danger" ng-click="dCtrl.remov(dCtrl.kidList.id)">Remove</button>
             <button href="#contact" data-toggle="modal" class="btn btn-primary" ng-click="update(dCtrl.KidList.id)">Add</button>
     </div>
 
     <div>     
        <table>
            <tr>        
-                <li><td>{{dCtrl.medList}}</td></li>       
+                <li><td><p>{{dCtrl.medList}}</p></td></li>       
            </tr>
        
        </table>
